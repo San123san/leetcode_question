@@ -9,18 +9,15 @@ representing a digit to the corresponding integer value. For example, if s.charA
 In Java, several data types and objects have a length property or method that you can use to determine the size or length of an array, string, or collection. Here are a few examples:
 
 Arrays: You can use the length property to get the length (number of elements) of an array.
-java
-Copy code
 int[] array = {1, 2, 3, 4, 5};
 int length = array.length;
 Strings: You can use the length() method to get the length (number of characters) of a string.
-java
-Copy code
+
 String text = "Hello, World!";
 int length = text.length();
 Collections (Lists, Sets, etc.): You can use the size() method to get the number of elements in a collection. For example, with an ArrayList:
-java
-Copy code
+
+
 ArrayList<String> list = new ArrayList<>();
 list.add("Apple");
 list.add("Banana");
