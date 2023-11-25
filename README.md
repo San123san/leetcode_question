@@ -23,3 +23,8 @@ list.add("Apple");
 list.add("Banana");
 int size = list.size();
 Remember that the specific method or property you should use depends on the type of data structure you are working with. Arrays have length, strings have length(), and collections often have size().
+
+When you're returning an array inline, you need to use the syntax new int[]{} to create a new array and initialize it with the elements you want to return.
+For instance, if you want to return an array containing two elements [i, j], you would use:
+Syntax: return new int[]{i, j};
+This syntax creates a new integer array and populates it with the values specified within the curly braces {}.
