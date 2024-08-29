@@ -24,3 +24,7 @@ When you're returning an array inline, you need to use the syntax new int[]{} to
 For instance, if you want to return an array containing two elements [i, j], you would use:
 Syntax: return new int[]{i, j};
 This syntax creates a new integer array and populates it with the values specified within the curly braces {}.
+
+Array and String both have different method.
+In array use the .length to get and in string use .size 
+
