@@ -26,5 +26,72 @@ Syntax: return new int[]{i, j};
 This syntax creates a new integer array and populates it with the values specified within the curly braces {}.
 
 Array and String both have different method.
-In array use the .length to get and in string use .size 
+In array use the .length to get length and in string use .size 
+
+# 2d array or matrix
+
+Here’s a step-by-step breakdown of the internal structure:
+
+1. Outer Array
+Description: This is the main array (matrix), which holds references to other arrays.
+Representation: It’s an array where each element is a reference to an inner array (representing rows of the matrix).
+2. Inner Arrays
+Description: These are arrays referenced by the outer array. Each inner array represents a row of the matrix.
+Representation: They contain the actual values of the matrix.
+```
+Diagram:
+   +------------------+
+   |   matrix         |  <-- Outer Array
+   | (Reference Array)|
+   +------------------+
+       /       |       \
+      /        |        \
+     /         |         \
+    /          |          \
+   /           |           \
++-------+   +-------+   +-------+
+| Row 1 |   | Row 2 |   | Row 3 |
+| [1, 2, 3]|   | [4, 5, 6]|   | [7, 8, 9]|
++-------+   +-------+   +-------+
+```
+Detailed Breakdown:
+Outer Array (matrix):
+
+It is an array of references (or pointers) to other arrays.
+In this case, it has three references, each pointing to one of the inner arrays.
+Inner Arrays (Rows):
+
+Each inner array holds the actual data of the matrix.
+The inner arrays in the example are:
+{1, 2, 3}
+{4, 5, 6}
+{7, 8, 9}
+
+To access a specific inner array (row), you use the following syntax:
+```java
+int[] row = matrix[index];
+```
+Example code:
+```java
+public class Main {
+    public static void main(String[] args) {
+        // Initialize the 2D array
+        int[][] matrix = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+
+        // Accessing and printing each inner array
+        for (int i = 0; i < matrix.length; i++) {
+            int[] row = matrix[i]; // Access the i-th inner array
+            System.out.print("Row " + i + ": ");
+            for (int j = 0; j < row.length; j++) {
+                System.out.print(row[j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+```
 
