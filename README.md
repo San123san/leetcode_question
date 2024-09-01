@@ -122,3 +122,142 @@ class GFG {
 
 ```
 
+# Set Interface
+The Set interface in Java is part of the Java Collections Framework and represents a collection of elements that does not allow duplicate values. It extends the Collection interface and provides the fundamental operations for working with sets.
+Key Features
+Unique Elements: A Set does not allow duplicate elements. If you try to add an element that is already present in the set, the operation will not modify the set.
+
+No Ordering: The Set interface does not guarantee any specific order of its elements. However, implementations like TreeSet and LinkedHashSet offer ordered variants.
+
+## Implementations of `Set`
+
+Java provides several implementations of the `Set` interface, each with its own characteristics and use cases:
+
+### 1. `HashSet`
+
+`HashSet` is the most commonly used implementation of the `Set` interface. It is backed by a hash table, allowing for constant-time performance for basic operations.
+
+- **Ordering**: No guaranteed order of elements.
+- **Internal Structure**: Utilizes hash codes to manage element locations.
+
+#### Example
+
+```java
+import java.util.HashSet;
+import java.util.Set;
+
+public class HashSetExample {
+    public static void main(String[] args) {
+        Set<String> set = new HashSet<>();
+
+        // Adding elements
+        set.add("apple");
+        set.add("banana");
+        set.add("cherry");
+
+        // Checking if an element is present
+        System.out.println("Contains 'banana': " + set.contains("banana")); // true
+
+        // Removing an element
+        set.remove("banana");
+
+        // Checking the size
+        System.out.println("Size: " + set.size()); // 2
+
+        // Iterating over elements
+        for (String fruit : set) {
+            System.out.println(fruit);
+        }
+
+        // Clearing the set
+        set.clear();
+        System.out.println("Is empty: " + set.isEmpty()); // true
+    }
+}
+```
+
+### 2. `LinkedHashSet`
+
+`LinkedHashSet` extends HashSet and maintains a doubly-linked list of entries. It preserves the order in which elements are inserted.
+
+- **Ordering**: Maintains insertion order.
+- **Internal Structure**: Uses both a hash table and a linked list.
+
+#### Example
+
+```java
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+public class LinkedHashSetExample {
+    public static void main(String[] args) {
+        Set<String> set = new LinkedHashSet<>();
+
+        // Adding elements
+        set.add("apple");
+        set.add("banana");
+        set.add("cherry");
+
+        // Checking if an element is present
+        System.out.println("Contains 'banana': " + set.contains("banana")); // true
+
+        // Removing an element
+        set.remove("banana");
+
+        // Checking the size
+        System.out.println("Size: " + set.size()); // 2
+
+        // Iterating over elements
+        for (String fruit : set) {
+            System.out.println(fruit); // Outputs: apple, cherry (in insertion order)
+        }
+
+        // Clearing the set
+        set.clear();
+        System.out.println("Is empty: " + set.isEmpty()); // true
+    }
+}
+```
+
+### 1. `TreeSet`
+
+`TreeSet` is an implementation of NavigableSet and is backed by a TreeMap. It maintains elements in a sorted order according to their natural ordering or a specified comparator.
+
+- **Ordering**: Maintains elements in a sorted order.
+- **Internal Structure**: Uses a Red-Black tree.
+
+#### Example
+
+```java
+import java.util.TreeSet;
+import java.util.Set;
+
+public class TreeSetExample {
+    public static void main(String[] args) {
+        Set<String> set = new TreeSet<>();
+
+        // Adding elements
+        set.add("apple");
+        set.add("banana");
+        set.add("cherry");
+
+        // Checking if an element is present
+        System.out.println("Contains 'banana': " + set.contains("banana")); // true
+
+        // Removing an element
+        set.remove("banana");
+
+        // Checking the size
+        System.out.println("Size: " + set.size()); // 2
+
+        // Iterating over elements
+        for (String fruit : set) {
+            System.out.println(fruit); // Outputs: apple, cherry (sorted order)
+        }
+
+        // Clearing the set
+        set.clear();
+        System.out.println("Is empty: " + set.isEmpty()); // true
+    }
+}
+```
