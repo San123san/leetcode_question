@@ -263,7 +263,7 @@ public class TreeSetExample {
 ```
 
 
-# Dynamic Programming Overview
+# Dynamic Programming Overview (dp[0][n-1])
 
 Dynamic programming (DP) is a technique used to solve complex problems by breaking them down into simpler subproblems. This approach involves storing solutions to subproblems in a table to avoid redundant calculations and ensure efficiency.
 
