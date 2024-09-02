@@ -261,3 +261,52 @@ public class TreeSetExample {
     }
 }
 ```
+
+
+# Dynamic Programming Overview
+
+Dynamic programming (DP) is a technique used to solve complex problems by breaking them down into simpler subproblems. This approach involves storing solutions to subproblems in a table to avoid redundant calculations and ensure efficiency.
+
+## Understanding `dp[0][n-1]` in a 2D Array
+
+In many dynamic programming problems, a 2D array `dp` is utilized to store solutions to various subproblems. The cell `dp[0][n-1]` is a key component in this process, as it typically contains the final result for the entire problem.
+
+### What is `dp[0][n-1]`?
+
+- **Definition**: `dp[0][n-1]` represents the solution to the problem for the entire input when the 2D array `dp` is used to solve subproblems.
+- **Location**: This cell is located at the top-left and bottom-right corners of the 2D table, where `0` is the starting index and `n-1` is the ending index of the input, with `n` being the length of the input.
+
+### Why Use `dp[0][n-1]`?
+
+- **Final Answer**: After filling the 2D array based on the problem's recurrence relations or formulas, `dp[0][n-1]` contains the final result for the entire input. This cell combines the results from all subproblems to provide the complete solution.
+- **Combining Results**: It represents the culmination of solving all smaller subproblems, making it the key cell that provides the final answer.
+
+### General Uses of `dp[0][n-1]`
+
+- **Longest Subsequence or Subarray**:
+  - **Example**: Finding the longest palindromic subsequence.
+  - **Explanation**: `dp[0][n-1]` holds the length of the longest palindromic subsequence for the entire string.
+
+- **Largest Value**:
+  - **Example**: Maximum value in problems like knapsack.
+  - **Explanation**: `dp[0][n-1]` might store the maximum value or optimal solution after considering all combinations.
+
+- **Smallest Value**:
+  - **Example**: Minimum edit distance between two strings.
+  - **Explanation**: `dp[0][n-1]` could store the minimum number of operations needed after evaluating all possible scenarios.
+
+- **Optimal Solution**:
+  - **Example**: Matrix chain multiplication or rod cutting.
+  - **Explanation**: `dp[0][n-1]` might represent the optimal cost or solution for the entire problem.
+
+### How to Use `dp[0][n-1]` to Return the Result
+
+- **Return Value**: In many dynamic programming implementations, the value stored in `dp[0][n-1]` is used as the final result. This cell provides the complete solution by combining all intermediate results from the 2D table.
+
+### Summary
+
+- **Purpose**: `dp[0][n-1]` stores the final result after processing all subproblems and is used to return the complete solution to the problem.
+- **Usage**: It provides the final answer by consolidating results from all smaller subproblems and is essential for deriving the solution efficiently.
+
+---
+
