@@ -351,3 +351,136 @@ Reference tracking in dynamic programming involves managing and updating the opt
 
 Reference tracking in dynamic programming helps in maintaining the best possible solution as subproblems are solved. By systematically updating references to optimal values, dynamic programming efficiently arrives at the solution for complex problems. The final result, located in the specific cell of the DP table, reflects the optimal solution derived from all intermediate computations.
 
+
+# Dynamic Programming: Using Addition to Combine Results
+
+## Overview
+
+Dynamic Programming (DP) is a technique used to solve problems by breaking them down into simpler subproblems and combining their solutions. Addition plays a crucial role in DP, particularly when combining results from multiple scenarios or choices. This document explains how addition is used in different ways within DP and provides a simple code example to illustrate these concepts.
+
+## Use of Addition Sign in Dynamic Programming
+
+### 1. **Combining Include and Exclude Choices**
+
+When solving problems involving choices or decisions, the addition sign is used to combine the results from including or excluding an element:
+
+- **Include**: Considering the element as part of the solution.
+- **Exclude**: Not considering the element and solving the problem without it.
+
+**Example**: Counting distinct subsequences in a string `s` that match a string `t`.
+
+- **Include**: If characters match, the number of subsequences is the sum of:
+  - The count of subsequences including the current character.
+  - The count of subsequences excluding the current character.
+
+- **Exclude**: If characters do not match, the number of subsequences is the count of subsequences excluding the current character.
+
+```java
+```java
+public class DistinctSubsequences {
+    public int numDistinct(String s, String t) {
+        int m = s.length();
+        int n = t.length();
+        
+        // dp[i][j] represents the number of distinct subsequences of s[0..i-1] that equals t[0..j-1]
+        int[][] dp = new int[m + 1][n + 1];
+
+        // Base case: An empty string `t` can be formed by any prefix of `s` in exactly one way.
+        for (int i = 0; i <= m; i++) {
+            dp[i][0] = 1;
+        }
+
+        // Fill the dp array
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (s.charAt(i - 1) == t.charAt(j - 1)) {
+                    // If characters match, we can either include this character or exclude it
+                    dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j];
+                } else {
+                    // If characters do not match, we can only exclude the current character of `s`
+                    dp[i][j] = dp[i - 1][j];
+                }
+            }
+        }
+
+        return dp[m][n];
+    }
+
+    public static void main(String[] args) {
+        DistinctSubsequences ds = new DistinctSubsequences();
+        String s = "rabbbit";
+        String t = "rabbit";
+        System.out.println(ds.numDistinct(s, t)); // Output: 3
+    }
+}
+```
+### 2. **Summing Over Subproblems**
+
+In many DP problems, you solve a problem by aggregating results from smaller subproblems. Addition helps in combining the results from these subproblems to get the final solution:
+
+- **Optimal Solutions**: In optimization problems, addition is used to sum over possible choices to determine the best outcome.
+- **Counting Problems**: For problems involving counting the number of ways to achieve a goal, addition aggregates the counts from different ways to form the solution.
+
+**Example**: Coin Change Problem.
+
+- To find the number of ways to make a target amount with given coins, add the results of using each coin.
+
+```java
+public class CoinChange {
+    public int numWays(int[] coins, int amount) {
+        int[] dp = new int[amount + 1];
+        dp[0] = 1; // Base case: There is one way to make amount 0 (using no coins)
+
+        // Update the dp array for each coin
+        for (int coin : coins) {
+            for (int i = coin; i <= amount; i++) {
+                dp[i] += dp[i - coin];
+            }
+        }
+
+        return dp[amount];
+    }
+
+    public static void main(String[] args) {
+        CoinChange cc = new CoinChange();
+        int[] coins = {1, 2, 5};
+        int amount = 5;
+        System.out.println(cc.numWays(coins, amount)); // Output: 4
+    }
+}
+```
+
+### 3. **Dynamic Programming Table Updates**
+
+In DP tables or arrays, the addition operation is used to update the table based on previous computations:
+
+- **Cumulative Results**: The current state is computed based on previous states, where addition aggregates results from different states to update the current state.
+
+**Example**: Computing Fibonacci Numbers.
+
+- Each Fibonacci number is the sum of the two preceding numbers, so addition combines results from previous computations.
+
+```java
+public class Fibonacci {
+    public int fib(int n) {
+        if (n <= 1) return n;
+        int[] dp = new int[n + 1];
+        dp[0] = 0;
+        dp[1] = 1;
+
+        // Update the dp array for each number
+        for (int i = 2; i <= n; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+
+        return dp[n];
+    }
+
+    public static void main(String[] args) {
+        Fibonacci fib = new Fibonacci();
+        int n = 10;
+        System.out.println(fib.fib(n)); // Output: 55
+    }
+}
+```
+
