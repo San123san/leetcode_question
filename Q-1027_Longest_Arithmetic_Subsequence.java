@@ -1,41 +1,26 @@
 class Solution {
     public int longestArithSeqLength(int[] nums) {
-        int n = nums.length;
-        if(n<=1) return 1;
+       int n = nums.length;
+       if(n<2) return n;
 
-        Map<String, Integer> store = new HashMap<>();
+       Map<Integer, Integer>[] dp = new Map[n];
+       for(int i=0; i<n; i++){
+        dp[i] = new HashMap<>();
+       }
 
-        int maxLength = 0;
+       int maxLength = 0;
 
-        for(int i=0; i<n; i++){
-            for(int j=i+1; j<n; j++){
-                int difference = nums[j] - nums[i];
-                maxLength = Math.max(maxLength, 1 + recc(nums, j, n, difference, store));
-            }
+       for(int i=1; i<n; i++){
+        for(int j=0; j<i; j++){
+            int diff = nums[i] - nums[j];
+
+            int length = dp[j].getOrDefault(diff,1)+1;
+
+            dp[i].put(diff, length);
+
+            maxLength = Math.max(maxLength, length);
         }
-        return maxLength;
-    }
-
-    public static int recc(int[] nums, int idx, int n, int difference, Map<String, Integer> store){
-        if(idx>=n) return 0;
-
-        String key = idx + "," + difference;
-
-        if(store.containsKey(key)){
-            return store.get(key);
-        }
-
-        int length = 1;
-
-        for(int k=idx+1; k<n; k++){
-            if(nums[k]-nums[idx] == difference){
-            length = Math.max(length, 1+ recc(nums, k, n, difference, store));
-          }
-        }
-
-        store.put(key, length);
-
-        return length;
-
+       }
+       return maxLength;
     }
 }
