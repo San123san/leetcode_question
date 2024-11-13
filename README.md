@@ -484,3 +484,49 @@ public class Fibonacci {
 }
 ```
 
+
+
+### another format of java
+```java
+class Solution {
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> store = new ArrayList<>();  // This will store the final result
+        if (root == null) return store;  // Return empty if the tree is empty
+
+        boolean leftToRight = true;  // Flag to toggle direction
+        
+        zigzagDFS(root, 0, store, leftToRight);
+        return store;
+    }
+
+    private void zigzagDFS(TreeNode node, int level, List<List<Integer>> store, boolean leftToRight) {
+        if (node == null) return;  // Base case for recursion
+
+        // Create a new list for the current level
+        if (store.size() <= level) {
+            store.add(new ArrayList<>());  // Add a new list for the next level if it doesn't exist
+        }
+
+
+### this line make difference
+        // Create a new list for the current level and replace the old one
+        List<Integer> adding = new ArrayList<>();  // Create a new list for the current level
+
+        // Add the node value to the new list
+        if (leftToRight) {
+            adding.add(node.val);  // Add to the end if left to right
+        } else {
+            adding.add(0, node.val);  // Add to the front if right to left
+        }
+
+        // Replace the current level list in store with the new list
+        store.set(level, adding);  // Replace the old list at this level with the new one
+
+        // Recursively traverse left and right, toggling the direction for the next level
+        zigzagDFS(node.left, level + 1, store, !leftToRight);  // Traverse left
+        zigzagDFS(node.right, level + 1, store, !leftToRight);  // Traverse right
+    }
+}
+
+```
+
